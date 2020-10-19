@@ -7,6 +7,7 @@ Currently, is possible:
 - List the cheaper avaliable Hotels in the destination city (by Booking.com).
 - List the next available Bus trips (including prices and booking links) from brazilian providers like ClickBus.com and GuicheVirtual.com.br
 - Plan a route (public transport or car) through two points of an metropolitan area (thanks to Moovit.com).
+- Get the top turistic attractions from a given place (powered by Tripadvisor.com).
 
 Many more features planned!
 

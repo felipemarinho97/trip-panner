@@ -35,7 +35,7 @@ function getTrips(inicio, fim, date) {
         );
 
         const price = parseFloat(
-          div(".search-ticket__price__text.promo")
+          div(".search-ticket__price__text")
             .text()
             .trim()
             .replace(/R\$./gi, "")
@@ -43,6 +43,7 @@ function getTrips(inicio, fim, date) {
         );
 
         return {
+          link,
           company,
           departureTime,
           returnTime,

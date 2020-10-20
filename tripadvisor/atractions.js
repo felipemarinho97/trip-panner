@@ -7,7 +7,7 @@ const { getTripAdvisorCityId, headers } = require("./util");
 async function getAtractions(cityName) {
   const cityId = await getTripAdvisorCityId(cityName);
 
-  fetch(
+  return fetch(
     `https://www.tripadvisor.com.br/Attractions-${cityId}-Activities-${cityName}.html`,
     {
       headers,
@@ -19,7 +19,7 @@ async function getAtractions(cityName) {
       const $ = cheerio.load(body);
 
       const atractions = $(
-        `[data-automation=shelf_4] a[href*=Attraction_Review-g304560]`
+        `[data-automation*=shelf_] a[href*=Attraction_Review-${cityId}]`
       );
       const set = new Set();
 
@@ -27,7 +27,13 @@ async function getAtractions(cityName) {
         const link = cheerio.load($.html(a));
         const name = ("LINK", link("span").attr("aria-label"));
 
-        if (name) set.add({ name, link: a.attribs.href.replace(/#.+$/, "") });
+        if (name)
+          set.add({
+            name,
+            link:
+              "https://www.tripadvisor.com.br" +
+              a.attribs.href.replace(/#.+$/, ""),
+          });
       });
 
       return set;

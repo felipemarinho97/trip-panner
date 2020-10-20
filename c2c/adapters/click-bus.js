@@ -6,10 +6,9 @@ const fim = "recife-pe";
 const date = new Date();
 
 function getTrips(inicio, fim, date) {
-  return fetch(
-    `http://www.clickbus.com.br/refresh/${inicio}/${fim}?departureDate=${date.getFullYear()}-${date.getMonth() +
-      1}-${date.getDate()}&cached=0`
-  )
+  const link = `http://www.clickbus.com.br/refresh/${inicio}/${fim}?departureDate=${date.getFullYear()}-${date.getMonth() +
+    1}-${date.getDate()}&cached=0`;
+  return fetch(link)
     .then((r) => r.json())
     .then((r) => r.search.departure)
     .then((r) => {
@@ -31,6 +30,7 @@ function getTrips(inicio, fim, date) {
         const price = div(".price").data().price;
 
         return {
+          link,
           company,
           departureTime,
           returnTime,

@@ -29,6 +29,18 @@ function getHospedagens(cidade, checkin, checkout, adults = 2, childs = 0) {
     });
 }
 
+function getPossibleCoords(query) {
+  const link = `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURI(
+    query
+  )}`;
+  return fetch(link).then((r) => r.json());
+  // .then((e) => {
+  //   return e.filter(
+  //     (m) => m.display_name.match(new RegExp(`.*${query.split(' ').join}.*`, "i")) != null
+  //   );
+  // });
+}
+
 function getRodoviaria(cityName) {
   const link = `https://nominatim.openstreetmap.org/search?format=json&q=${cityName +
     encodeURI(" Rodoviária")}`;
@@ -49,7 +61,15 @@ function getRodoviaria(cityName) {
 }
 
 function getEuclidianDistance(c1, c2) {
-  return Math.sqrt((c2[1] - c1[1]) ** 2 + (c2[0] - c1[0]) ** 2);
+  return Math.sqrt(
+    (parseFloat(c2[1]) - parseFloat(c1[1])) ** 2 +
+      (parseFloat(c2[0]) - parseFloat(c1[0])) ** 2
+  );
 }
 
-module.exports = { getHospedagens, getRodoviaria, getEuclidianDistance };
+module.exports = {
+  getHospedagens,
+  getRodoviaria,
+  getEuclidianDistance,
+  getPossibleCoords,
+};

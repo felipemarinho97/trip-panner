@@ -1,8 +1,8 @@
 const cheerio = require("cheerio");
 const fs = require("fs");
 
-const body = fs.readFileSync("./out.html").toString();
-getHospedagensFromBody(body);
+// const body = fs.readFileSync("./out.html").toString();
+// getHospedagensFromBody(body);
 
 function getHospedagensFromBody(body) {
   const $ = cheerio.load(body);

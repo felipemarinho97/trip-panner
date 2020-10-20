@@ -15,11 +15,11 @@ function getId(keyword) {
     e.metros.forEach((m) => {
       const distance = compare(m.name, keyword);
 
-      if (distance < 1) matches.push({ distance, ...m });
+      if (distance <= 1) matches.push({ distance, ...m });
       else {
         m.keywords.forEach((mk) => {
-          const distance = compare(mk, keyword);
-          if (distance < 3) matches.push({ distance, ...m });
+          const distance = compare(mk, keyword) + 1;
+          matches.push({ distance, ...m });
         });
       }
     });

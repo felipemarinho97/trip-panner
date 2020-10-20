@@ -1,7 +1,7 @@
 const { getId } = require("./util");
 
-function planRoute(c2, c1, depart = new Date()) {
-  const id = getId("João Pessoa");
+function planRoute(cityName, c2, c1, depart = new Date()) {
+  const id = getId(cityName);
 
   return `https://moovitapp.com/${id}/poi/${c1.name}/${
     c2.name

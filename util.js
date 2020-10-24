@@ -34,11 +34,6 @@ function getPossibleCoords(query) {
     query
   )}`;
   return fetch(link).then((r) => r.json());
-  // .then((e) => {
-  //   return e.filter(
-  //     (m) => m.display_name.match(new RegExp(`.*${query.split(' ').join}.*`, "i")) != null
-  //   );
-  // });
 }
 
 function getRodoviaria(cityName) {
@@ -52,10 +47,6 @@ function getRodoviaria(cityName) {
           (m) => m.display_name.match(/.*rodovi(a|á)ri(a|o).*/i) != null
         );
       })
-      // .then((e) => {
-      //   console.log(e);
-      //   return e;
-      // })
       .then((r) => r[0])
   );
 }
